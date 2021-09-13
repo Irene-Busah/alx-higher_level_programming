@@ -1,22 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * is_palindrome - Checks if a number is a palindrome
- * @n: The given unsigned integer
+ * main - check the code for ALX School students.
  *
- * Return: Either 1 if n is a palindrome or 0 if not
+ * Return: Always 0.
  */
-int is_palindrome(listint_t **head)
+int main(void)
 {
-	int remain, num, sum = 0;
+    listint_t *head;
 
-	for (num = n; n != 0; n = n / 10)
-	{
-		remain = n % 10;
-		sum = sum * 10 + remain;
-	}
-	if (num == sum)
-		return (1);
-	else
-		return (0);
+    head = NULL;
+    add_nodeint_end(&head, 1);
+    add_nodeint_end(&head, 17);
+    add_nodeint_end(&head, 972);
+    add_nodeint_end(&head, 50);
+    add_nodeint_end(&head, 98);
+    add_nodeint_end(&head, 98);
+    add_nodeint_end(&head, 50);
+    add_nodeint_end(&head, 972);
+    add_nodeint_end(&head, 17);
+    add_nodeint_end(&head, 1);
+    print_listint(head);
+
+    if (is_palindrome(&head) == 1)
+        printf("Linked list is a palindrome\n");
+    else
+        printf("Linked list is not a palindrome\n");
+
+    free_listint(head);
+
+    return (0);
 }
