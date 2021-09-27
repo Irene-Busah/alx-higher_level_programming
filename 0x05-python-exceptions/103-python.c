@@ -1,4 +1,4 @@
-#include "103-python.c"
+#include "/usr/include/python3.4/Python.h"
 #include <stdio.h>
 #include <stdlib.h>
 
