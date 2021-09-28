@@ -7,4 +7,9 @@ This class don't have anything for this moment
 
 
 class Square:
+    """ This is an empty class
+
+
+    defining square
+    """
     pass
