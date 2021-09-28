@@ -5,6 +5,7 @@ import math
 
 
 class MagicClass:
+    ''' Magic Class reverses given class to bytecode '''
     def __init__(self, radius=0):
         self.__radius = 0
 
