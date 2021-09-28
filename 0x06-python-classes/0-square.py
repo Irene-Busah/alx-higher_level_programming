@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-""" empty square class 
-
-This class don't have anything for this moment
-
-"""
+""" empty square class """
 
 
 class Square:
