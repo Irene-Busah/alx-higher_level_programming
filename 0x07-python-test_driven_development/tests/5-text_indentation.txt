@@ -3,13 +3,14 @@
 Test case #0: A test case without any of the characters
 
 >>> text_indentation("Holberton School")
-Holberton School>>> 
+Holberton School
+>>>
 >>> try:
 ...     text_indentation("Holberton School of Software Engineering")
 ... except Exception as e:
 ...     print(e)
 ... 
-Holberton School of Software Engineering>>>
+Holberton School of Software Engineering
 
 Test case #1: A test case with all the characters
 
@@ -19,13 +20,13 @@ Test case #1: A test case with all the characters
 ...     print(e)
 ... 
 Holberton.
-
+<BLANKLINE>
 School?
-
+<BLANKLINE>
 How are you:
-
-John>>>
-
+<BLANKLINE>
+John
+>>>
 Test case #2: A test case with a integer
 
 >>> try:
@@ -43,12 +44,5 @@ Test case #3: A test case with an empty string
 ...     print(e)
 ...
 
-Test case #4: A test case without any parameter
 
->>> try:
-...     text_indentation()
-... except Exception as e:
-...     print(e)
-... 
-text_indentation() missing 1 required positional argument: 'text'
 >>> 
