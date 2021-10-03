@@ -1,0 +1,54 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test case #0: A test case without any of the characters
+
+>>> text_indentation("Holberton School")
+Holberton School>>> 
+>>> try:
+...     text_indentation("Holberton School of Software Engineering")
+... except Exception as e:
+...     print(e)
+... 
+Holberton School of Software Engineering>>>
+
+Test case #1: A test case with all the characters
+
+>>> try:
+...     text_indentation("Holberton. School? How are you: John")
+... except Exception as e:
+...     print(e)
+... 
+Holberton.
+
+School?
+
+How are you:
+
+John>>>
+
+Test case #2: A test case with a integer
+
+>>> try:
+...     text_indentation(98)
+... except Exception as e:
+...     print(e)
+... 
+text must be a string
+
+Test case #3: A test case with an empty string
+
+>>> try:
+...     text_indentation(" ")
+... except Exception as e:
+...     print(e)
+...
+
+Test case #4: A test case without any parameter
+
+>>> try:
+...     text_indentation()
+... except Exception as e:
+...     print(e)
+... 
+text_indentation() missing 1 required positional argument: 'text'
+>>> 
