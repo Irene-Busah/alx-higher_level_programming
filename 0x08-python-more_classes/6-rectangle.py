@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Rectangle class"""
 
+
 class Rectangle:
-    """Defining Rectangle
-    """
+    """Defining Rectangle"""
     number_of_instances = 0
 
     def __init__(self, width=0, height=0):
@@ -41,7 +41,7 @@ class Rectangle:
         height = str(self.__height)
         width = str(self.__width)
         return 'Rectangle({}, {})'.format(width, height)
-    
+
     def __str__(self):
         if self.width == 0 or self.__height == 0:
             return ""
@@ -52,11 +52,11 @@ class Rectangle:
             if height == self.__height - 1:
                 shape += "\n"
         return shape
-    
+
     def __del__(self):
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
-    
+
     @property
     def width(self):
         """Getter for width
@@ -72,7 +72,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("width must be >= 0")
         self.__width = value
-    
+
     @property
     def height(self):
         """Getter for height
@@ -81,8 +81,7 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        """Setter with edge cases
-        """
+        """Setter with edge cases"""
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value < 0:
