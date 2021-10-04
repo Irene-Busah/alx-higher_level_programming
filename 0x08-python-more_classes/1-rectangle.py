@@ -20,12 +20,14 @@ class Rectangle:
         if height < 0:
             raise ValueError("height must be >= 0")
         self.__width = width
-        self.__height = height    
+        self.__height = height
+
     @property
     def height(self):
         """Getter for height
         """
         return self.__height
+
     @height.setter
     def height(self, value):
         """Setter for height with edge cases
@@ -35,11 +37,13 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
     @property
     def width(self):
         """Getter for width
         """
         return self.__width
+
     @width.setter
     def width(self, value):
         """Setter for width with edge cases
