@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-
-"""Defining a new class with two private instances"""
+"""Rectangle class"""
 
 
 class Rectangle:
-    """Instantiating the instance attribute"""
+    """Defining Rectangle
+    """
     def __init__(self, width=0, height=0):
+        """Instantiation of width and height with edge cases
+        Attributes:
+            width: private instance attribute
+            height: private instance attribute
+        """
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if width < 0:
@@ -15,32 +20,32 @@ class Rectangle:
         if height < 0:
             raise ValueError("height must be >= 0")
         self.__width = width
-        self.__height = height
-
-    @property
-    def width(self):
-        """Getter"""
-        return self.__width
-
-    @width.setter
-    def width(self, value):
-        """setter"""
-        if not isinstance(width, int):
-            raise TypeError("width must be an integer")
-        if width < 0:
-            raise ValueError("width must be >= 0")
-        return self.value
-
+        self.__height = height    
     @property
     def height(self):
-        """Getter"""
+        """Getter for height
+        """
         return self.__height
-
     @height.setter
     def height(self, value):
-        """Setter"""
-        if not isinstance(height, int):
+        """Setter for height with edge cases
+        """
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
-        if height < 0:
+        if value < 0:
             raise ValueError("height must be >= 0")
-        return self.__height
+        self.__height = value
+    @property
+    def width(self):
+        """Getter for width
+        """
+        return self.__width
+    @width.setter
+    def width(self, value):
+        """Setter for width with edge cases
+        """
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = value
