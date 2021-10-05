@@ -5,4 +5,4 @@
 
 class LockedClass:
     """empty class"""
-    pass
+    __slots__ = 'first_name'
