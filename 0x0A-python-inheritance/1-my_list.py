@@ -7,4 +7,5 @@ class MyList(list):
     """Instantiating a method that sort a list in ascending order"""
     def print_sorted(self):
         """Print sorted list"""
-        print(sorted(self))
+        if issubclass(MyList, list):
+            print(sorted(self))
