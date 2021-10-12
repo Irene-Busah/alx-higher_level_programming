@@ -1,155 +1,64 @@
-===============================
-7. Integer validator module
-===============================
-
-Import module:
-==============
-    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-    >>> bg = BaseGeometry()
+==========================
+TESTS / 7-base_geometry.py
+==========================
 
 
-Function:
-=========
-Write a class BaseGeometry (based on 6-base_geometry.py).
-
-    * You can assume name is always a string
-    * If value is not an integer: raises a TypeError exception
-    * If value is less or equal to 0: raises a ValueError exception
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
-Section // No exceptions
-=========================
+>>> base = BaseGeometry()
+>>> base.integer_validator("integer", 2795)
 
-Test case #0: A test case with good parameters
-    
-    >>> bg.integer_validator("my_int", 12)
+>>> base.integer_validator("zero", 0)
+Traceback (most recent call last):
+ValueError: zero must be greater than 0
 
+>>> base.integer_validator("negative", -10)
+Traceback (most recent call last):
+ValueError: negative must be greater than 0
 
-Test case #1: A test case with good parameters
+>>> base.integer_validator("float", 1.0)
+Traceback (most recent call last):
+TypeError: float must be an integer
 
-    >>> bg.integer_validator("width", 89)
+>>> base.integer_validator("negative_float", -1.0)
+Traceback (most recent call last):
+TypeError: negative_float must be an integer
 
+>>> base.integer_validator("boolean", True)
+Traceback (most recent call last):
+TypeError: boolean must be an integer
 
-Section // Type Errors
-=========================
+>>> base.integer_validator("list", [0, 1, 2, 3])
+Traceback (most recent call last):
+TypeError: list must be an integer
 
-Test case #2: A test case with a not integer value
+>>> base.integer_validator("set", set([0, 1, 2, 3]))
+Traceback (most recent call last):
+TypeError: set must be an integer
 
-    >>> try:
-    ...     bg.integer_validator("name", "John")
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
+>>> base.integer_validator("touple", (0, 1))
+Traceback (most recent call last):
+TypeError: touple must be an integer
 
-Test case #3: A test case with a infinite float value
+>>> base.integer_validator("string", "Holberton")
+Traceback (most recent call last):
+TypeError: string must be an integer
 
-    >>> try:
-    ...     bg.integer_validator("inf_float", 1e400)
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] inf_float must be an integer
+>>> base.integer_validator("None", None)
+Traceback (most recent call last):
+TypeError: None must be an integer
 
-Test case #4: A test case with a NaN value
-
-    >>> try:
-    ...     bg.integer_validator("nan", float('nan'))
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] nan must be an integer
-
-
-Test case #6: A test case with a tuple value
-
-    >>> try:
-    ...     bg.integer_validator("name", (4, ))
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #7: A test case with a string value
-
-    >>> try:
-    ...     bg.integer_validator("name", 'Monty Python')
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #8: A test case with a none value
-
-    >>> try:
-    ...     bg.integer_validator("name", None)
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #9: A test case with a list value
-
-    >>> try:
-    ...     bg.integer_validator("name", [])
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #10: A test case with a dictionary value
-
-    >>> try:
-    ...     bg.integer_validator("name", {3, 4})
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #11: A test case with a class value
-
-    >>> try:
-    ...     bg.integer_validator("name", object)
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] name must be an integer
-
-Test case #12: A test case without value
-
-    >>> try:
-    ...     bg.integer_validator("name")
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] integer_validator() missing 1 required positional argument: 'value'
-
-Test case #13: A test case without value
-
-    >>> try:
-    ...     bg.integer_validator()
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [TypeError] integer_validator() missing 2 required positional arguments: 'name' and 'value'
+>>> base.integer_validator()
+Traceback (most recent call last):
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
 
-Section // Value Errors
-=========================
 
-Test case #14: A test case with zero as value
+>>> base.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
 
-    >>> try:
-    ...     bg.integer_validator("age", 0)
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [ValueError] age must be greater than 0
-
-Test case #15: A test case with a value less than zero
-
-    >>> try:
-    ...     bg.integer_validator("distance", -4)
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [ValueError] distance must be greater than 0
-
-
-Section // General Errors
-=========================
-
-Test case #16: A test case with a not available method
-
-    >>> try:
-    ...     bg.area()
-    ... except Exception as e:
-    ...     print("[{}] {}".format(e.__class__.__name__, e))
-    [Exception] area() is not implemented
+>>> base.area(0)
+Traceback (most recent call last):
+TypeError: area() takes 1 positional argument but 2 were given
