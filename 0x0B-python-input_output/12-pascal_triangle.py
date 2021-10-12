@@ -1,10 +1,15 @@
 #!/usr/bin/python3
+"""Pascal's Triangle"""
 
 
 def pascal_triangle(n):
-    trow = [1]
-    y = [0]
-    for x in range(max(n, 0)):
-        print(trow)
-        trow = [l + r for l, r in zip(trow + y, y + trow)]
-    return n >= 1
+    """returns a list of lists of integers
+    representing the Pascal’s triangle of n"""
+    triangle = []
+    if n <= 0:
+        return []
+    for i in range(n):
+        a = 11 ** i
+        row = [int(digit) for digit in str(a)]
+        triangle += [row]
+    return triangle
