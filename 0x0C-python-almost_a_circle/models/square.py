@@ -1,57 +1,62 @@
 #!/usr/bin/python3
-
-"""Defining the class Square"""
+"""module of 'Square' class"""
 
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Instantiating the instance methods of the class"""
+    """Representation of a Square"""
+
     def __init__(self, size, x=0, y=0, id=None):
+        """class constructor"""
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """ Getter for size """
+        """size getter method"""
         return self.width
 
     @size.setter
-    def size(self, size):
-        """ Setter for size """
-        self.width = size
-        self.height = size
+    def size(self, value):
+        """size setter method"""
+        self.width = value
+        self.height = value
 
     def __str__(self):
-        id = str(self.id)
-        size = str(self.size)
-        x = str(self.x)
-        y = str(self.y)
-        return '[Square] ({}) {}/{} - {}'.format(id, x, y, size)
+        """custom __str__ method for Square"""
+        return "[{}] ({}) {}/{} - {}".format(self.__class__.__name__, self.id,
+                                             self.x, self.y, self.width)
 
     def update(self, *args, **kwargs):
-        """ Checking arguments and kwargs """
-        arg = len(args)
-        if arg >= 1:
-            self.id = args[0]
-        elif "id" in kwargs:
-            self.id = kwargs["id"]
-        if arg >= 2:
-            self.size = args[1]
-        elif "size" in kwargs:
-            self.size = kwargs["size"]
-        if arg >= 3:
-            self.x = args[2]
-        elif "x" in kwargs:
-            self.x = kwargs["x"]
-        if arg >= 4:
-            self.y = args[3]
-        elif "y" in kwargs:
-            self.y = kwargs["y"]
+        """updates values of the Square instance from args or kwargs"""
+        if args is not None and len(args) > 0:
+            i = 0
+            for arg in args:
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.size = arg
+                elif i == 2:
+                    self.x = arg
+                elif i == 3:
+                    self.y = arg
+                i += 1
+        elif kwargs is not None:
+            for (key, value) in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "size":
+                    self.size = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
 
     def to_dictionary(self):
-        """ Dictionary """
-        rec_dict = super().to_dictionary()
-        rec_dict["size"] = rec_dict["width"]
-        rec_dict.pop("width")
-        rec_dict.pop("height")
-        return rec_dict
+        """returns the dictionary representation of the Square instance"""
+        return {
+                'id': self.id,
+                'size': self.size,
+                'x': self.x,
+                'y': self.y
+               }
