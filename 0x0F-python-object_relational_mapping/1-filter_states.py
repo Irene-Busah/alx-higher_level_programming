@@ -7,7 +7,6 @@ from sys import argv
 
 
 if __name__ == '__main__':
-    """Accessing the database and retrieving the sates with name starting with N"""
 
     connection = MySQLdb.connect(host="localhost", user=argv[1], port=3306, password=argv[2], database=argv[3])
     cur = connection.cursor()
