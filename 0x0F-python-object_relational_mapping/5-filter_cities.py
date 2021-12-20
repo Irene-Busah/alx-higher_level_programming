@@ -11,12 +11,17 @@ if __name__ == "__main__":
     database = MySQLdb.connect(host='localhost', port=3306,
                                user=argv[1], passwd=argv[2], db=argv[3])
     cursor = database.cursor()
-    cursor.execute("SELECT * FROM states WHERE name \
-    LIKE BINARY '{:s}' ORDER BY id ASC".format(argv[4]))
+    cursor.execute("SELECT cities.name FROM cities \
+    INNER JOIN states ON states.id = cities.state_id \
+    WHERE states.name LIKE BINARY %s ORDER BY cities.id ASC", (argv[4], ))
     list_of_states = cursor.fetchall()
     """Print results"""
-    for states in list_of_states:
-        print(states)
+    for s, states in enumerate(list_of_states):
+        if s != 0:
+            print(", {:s}".format(states[0]), end='')
+        else:
+            print("{:s}".format(states[0]), end='')
+    print()
     """Close cursor and connection to database"""
     cursor.close()
     database.close()
