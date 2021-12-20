@@ -1,31 +1,32 @@
 #!/usr/bin/python3
 """
-Script that lists all State objects from database hbtn_0e_6_usa
+This script prints all City objects
+from the database `hbtn_0e_14_usa`.
 """
 
 from sys import argv
+from model_state import Base, State
+from model_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
-from model_city import City
 
 if __name__ == "__main__":
+    """
+    Access to the database and get the cities
+    from the database.
+    """
 
-    """ Variables representing arguments """
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    """ Start engine """
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                           .format(username, password, db_name))
-    """ Create a configured class Session """
+    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        argv[1], argv[2], argv[3])
+    engine = create_engine(db_uri)
     Session = sessionmaker(bind=engine)
-    """ Setting up session """
-    my_session = Session()
-    """ Finding all City objects """
-    cities = my_session.query(City).join(State).order_by(City.id).all()
-    """ Print in format """
-    for city in cities:
-        print("{}: ({}) {}".format(city.state, city.id, city.name))
-    """ Close the session """
-    my_session.close()
+
+    session = Session()
+
+    query = session.query(City, State).join(State)
+
+    for _c, _s in query.all():
+        print("{}: ({:d}) {}".format(_s.name, _c.id, _c.name))
+
+    session.commit()
+    session.close()

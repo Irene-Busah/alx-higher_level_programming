@@ -1,31 +1,29 @@
 #!/usr/bin/python3
 """
-Script that lists all State objects from database hbtn_0e_6_usa
+This script prints the first State object
+from the database `hbtn_0e_6_usa`.
 """
 
 from sys import argv
+from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
 
 if __name__ == "__main__":
+    """
+    Access to the database and get a state
+    from the database.
+    """
 
-    """ Variables representing arguments """
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    """ Start engine """
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                           .format(username, password, db_name))
-    """ Create a configured class Session """
+    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        argv[1], argv[2], argv[3])
+    engine = create_engine(db_uri)
     Session = sessionmaker(bind=engine)
-    """ Setting up session """
-    my_session = Session()
-    """ Printing state objects """
-    object = my_session.query(State).order_by(State.id).first()
-    if object:
-        print("{}: {}".format(object.id, object.name))
+
+    session = Session()
+    instance = session.query(State).order_by(State.id).first()
+
+    if instance is None:
+        print('Nothing')
     else:
-        print("Nothing")
-    """ Session closed """
-    my_session.close()
+        print('{0}: {1}'.format(instance.id, instance.name))

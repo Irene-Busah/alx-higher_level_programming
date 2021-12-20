@@ -1,35 +1,27 @@
 #!/usr/bin/python3
-
 """
-Script that lists all State objects from database hbtn_0e_6_usa
+This script changes the name of a State object
+from the database `hbtn_0e_6_usa`.
 """
 
 from sys import argv
+from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
 
 if __name__ == "__main__":
+    """
+    Updates a State object on the database.
+    """
 
-    from sys import argv
-    from sqlalchemy import create_engine
-    from sqlalchemy.orm import sessionmaker
-    from model_state import State
-    """ Variables representing arguments """
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    """ Start engine """
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                           .format(username, password, db_name))
-    """ Create a configured class Session """
+    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        argv[1], argv[2], argv[3])
+    engine = create_engine(db_uri)
     Session = sessionmaker(bind=engine)
-    """ Setting up session """
-    my_session = Session()
-    """ Changing name of object with 2 as it's id """
-    state_to_update = my_session.query(State).filter(State.id == 2).one()
-    state_to_update.name = 'New Mexico'
-    """ Commit new state """
-    my_session.commit()
-    """ Session closed """
-    my_session.close()
+
+    session = Session()
+
+    ari_state = session.query(State).filter(State.id == '2').first()
+    ari_state.name = 'New Mexico'
+    session.commit()
+    session.close()
