@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""The script sends a POST request to a URL and displays the
-body of the response"""
-
+"""
+takes in a URL and an email address, sends a POST request to the passed URL
+with the email as a parameter, and finally displays the body of the response
+"""
 import requests
 from sys import argv
 
-
-if __name__ == "__main__":
-    load = {'email': argv[2]}
-    request = requests.get(argv[1])
-    print(request.text)
+if __name__ == '__main__':
+    payload = {'email': argv[2]}
+    r = requests.post(argv[1], data=payload)
+    print(r.text)
